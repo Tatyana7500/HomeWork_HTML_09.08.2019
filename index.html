@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>React - A JavaScript library for building user interfaces</title>
+    <script src="https://kit.fontawesome.com/f2c00596c2.js"></script>
+</head>
+<body>
+
+<header>
+    <div>
+        <a href="#">
+            <img src="images/logo.svg" width="20" height="20" alt="React"/>
+            <span>React</span>
+        </a>
+        <nav>
+            <a href="#">Docs</a>
+            <a href="#">Tutorial</a>
+            <a href="#">Blog</a>
+            <a href="#">Community</a>
+        </nav>
+        <form>
+            <input type="search" placeholder="Search">
+            <i class="fas fa-search"></i>
+        </form>
+        <div>
+            <nav>
+                <a href="#">c16.9.0</a>
+                <a href="#"><i class="fas fa-language"></i>Languages</a>
+                <a href="#">GitHub<i class="fas fa-external-link-alt"></i></a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section>
+        <div>
+            <h1>React</h1>
+            <p>A JavaScript library for building user interfaces</p>
+            <a href="#">Get Started</a>
+            <a href="#">Take the Tutorial<i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <div>
+                <h2>Declarative</h2>
+                <p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>
+                <br>
+                <p>Declarative views make your code more predictable and easier to debug.</p>
+            </div>
+            <div>
+                <h2>Component-Based</h2>
+                <p>Build encapsulated components that manage their own state, then compose them to make complex UIs.</p>
+                <br>
+                <p>Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.</p>
+            </div>
+            <div>
+                <h2>Learn Once, Write Anywhere</h2>
+                <p>We don’t make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.</p>
+                <br>
+                <p>React can also render on the server using Node and power mobile apps using <a href="#">React Native.</a></p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section>
+        <div>
+            <div>
+                <h3>A Simple Component</h3>
+                <p>React components implement a <code>render()</code> method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by <code>render()</code> via <code>this.props</code>.</p>
+                <p><strong>JSX is optional and not required to use React.</strong> Try the <a href="#" target="_blank">Babel REPL</a> to see the raw JavaScript code produced by the JSX compilation step.</p>
+            </div>
+            <div>
+                <div>
+                    <p>LIVE JSX EDITOR</p>
+                    <input type="checkbox" id="jsx_1" checked><label for="jsx_1">JSX?</label>
+                </div>
+                <div>
+                    <pre>
+                        class HelloMessage extends React.Component {
+                            render() {
+                                return (
+                                  &lt;div&gt;
+                                    Hello {this.props.name}
+                                  &lt;/div&gt;
+                                );
+                            }
+                        }
+
+                        ReactDOM.render(
+                            &lt;HelloMessage name="Taylor" /&gt;,
+                            document.getElementById('hello-example')
+                        );
+                    </pre>
+                </div>
+                <div>
+                    <div>
+                        <p>RESULT</p>
+                    </div>
+                    <div>
+                        <p>Hello Taylor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <div>
+                <h3>A Stateful Component</h3>
+                <p>In addition to taking input data (accessed via <code>this.props</code>), a component can maintain internal state data (accessed via <code>this.state</code>). When a component’s state data changes, the rendered markup will be updated by re-invoking <code>render()</code>.</p>
+            </div>
+            <div>
+                <div>
+                    <p>LIVE JSX EDITOR</p>
+                    <input type="checkbox" id="jsx_2" checked><label for="jsx_2">JSX?</label>
+                </div>
+                <div>
+                    <pre>
+                        class Timer extends React.Component {
+                        constructor(props) {
+                            super(props);
+                            this.state = { seconds: 0 };
+                        }
+
+                        tick() {
+                            this.setState(state => ({
+                                  seconds: state.seconds + 1
+                            }));
+                        }
+
+                        componentDidMount() {
+                            this.interval = setInterval(() => this.tick(), 1000);
+                        }
+
+                        componentWillUnmount() {
+                            clearInterval(this.interval);
+                        }
+
+                        render() {
+                            return (
+                                &lt;div&gt;
+                                    Seconds: {this.state.seconds}
+                                &lt;/div&gt;
+                                );
+                            }
+                        }
+
+                        ReactDOM.render(
+                            &lt;Timer /&gt;,
+                              document.getElementById('timer-example')
+                        );
+                    </pre>
+                </div>
+                <div>
+                    <div>
+                        <p>RESULT</p>
+                    </div>
+                    <div>
+                        <p>Seconds:<span>30539</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <div>
+                <h3>An Application</h3>
+                <p>Using <code>props</code> and <code>state</code>, we can put together a small Todo application. This example uses <code>state</code> to track the current list of items as well as the text that the user has entered. Although event handlers appear to be rendered inline, they will be collected and implemented using event delegation.</p>
+            </div>
+            <div>
+                <div>
+                    <p>LIVE JSX EDITOR</p>
+                    <input type="checkbox" id="jsx_3" checked><label for="jsx_3">JSX?</label>
+                </div>
+                <div>
+                    <pre>
+                        class TodoApp extends React.Component {
+                            constructor(props) {
+                                super(props);
+                                this.state = { items: [], text: '' };
+                                this.handleChange = this.handleChange.bind(this);
+                                this.handleSubmit = this.handleSubmit.bind(this);
+                            }
+
+                            render() {
+                                return (
+                                  &lt;div&gt;
+                                    &lt;h3&gt;TODO&lt;/h3&gt;
+                                    &lt;TodoList items={this.state.items} /&gt;
+                                    &lt;form onSubmit={this.handleSubmit}&gt;
+                                      &lt;label htmlFor="new-todo"&gt;
+                                        What needs to be done?
+                                      &lt;/label&gt;
+                                      &lt;input
+                                              id="new-todo"
+                                              onChange={this.handleChange}
+                                              value={this.state.text}
+                                      /&gt;
+                                      &lt;button&gt;
+                                        Add #{this.state.items.length + 1}
+                                      &lt;/button&gt;
+                                    &lt;/form&gt;
+                                  &lt;/div&gt;
+                                );
+                            }
+
+                            handleChange(e) {
+                                this.setState({ text: e.target.value });
+                            }
+
+                            handleSubmit(e) {
+                                e.preventDefault();
+                                if (!this.state.text.length) {
+                                  return;
+                                }
+                                const newItem = {
+                                  text: this.state.text,
+                                  id: Date.now()
+                                };
+                                this.setState(state => ({
+                                  items: state.items.concat(newItem),
+                                  text: ''
+                                }));
+                              }
+                            }
+
+                            class TodoList extends React.Component {
+                              render() {
+                                return (
+                                  &lt;ul&gt;
+                                    {this.props.items.map(item => (
+                                      &lt;li key={item.id}&gt;{item.text}&lt;/li&gt;
+                                    ))}
+                                  &lt;/ul&gt;
+                                );
+                              }
+                            }
+
+                        ReactDOM.render(
+                            &lt;TodoApp /&gt;,
+                            document.getElementById('todos-example')
+                        );
+                    </pre>
+                </div>
+                <div>
+                    <div>
+                        <p>RESULT</p>
+                    </div>
+                    <div>
+                        <h3>TODO</h3>
+                        <form>
+                            <label for="todo">What needs to be done?</label>
+                            <br>
+                            <input type="text" id="todo" name="todo">
+                            <br>
+                            <button>Add #1</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <div>
+                <h3>A Component Using External Plugins</h3>
+                <p>React allows you to interface with other libraries and frameworks. This example uses <strong>remarkable</strong>, an external Markdown library, to convert the <code>&lt;textarea&gt;</code>’s value in real time.</p>
+            </div>
+            <div>
+                <div>
+                    <p>LIVE JSX EDITOR</p>
+                    <input type="checkbox" id="jsx_4" checked><label for="jsx_4">JSX?</label>
+                </div>
+                <div>
+                    <pre>
+                        class MarkdownEditor extends React.Component {
+                            constructor(props) {
+                                super(props);
+                                this.handleChange = this.handleChange.bind(this);
+                                this.state = { value: 'Hello, **world**!' };
+                            }
+
+                             handleChange(e) {
+                                this.setState({ value: e.target.value });
+                             }
+
+                             getRawMarkup() {
+                                const md = new Remarkable();
+                                return { __html: md.render(this.state.value) };
+                             }
+
+                             render() {
+                                return (
+                                  &lt;div className="MarkdownEditor"&gt;
+                                    &lt;h3&gt;Input&lt;/h3&gt;
+                                    &lt;label htmlFor="markdown-content"&gt;
+                                      Enter some markdown
+                                    &lt;/label&gt;
+                                    &lt;textarea
+                                            id="markdown-content"
+                                            onChange={this.handleChange}
+                                            defaultValue={this.state.value}
+                                    /&gt;
+                                    &lt;h3&gt;Output&lt;/h3&gt;
+                                    &lt;div
+                                            className="content"
+                                            dangerouslySetInnerHTML={this.getRawMarkup()}
+                                    /&gt;
+                                  &lt;/div&gt;
+                                );
+                             }
+                        }
+
+                        ReactDOM.render(
+                            &lt;MarkdownEditor /&gt;,
+                            document.getElementById('markdown-example')
+                        );
+                    </pre>
+                </div>
+                <div>
+                    <div>
+                        <p>RESULT</p>
+                    </div>
+                    <div>
+                        <h3>Input</h3>
+                        <label for="component">Enter some markdown</label>
+                        <br>
+                        <input type="text" id="component" name="component">
+                        <h3>Output</h3>
+                        <p>Hello,<strong>world</strong>!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <a href="#">Get Started</a>
+            <a href="#">Take the Tutorial<i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div>
+        <div>
+            <img src="images/six.png" alt="facebook" width="200"/>
+            <p>Copyright © 2019 Facebook Inc.</p>
+        </div>
+        <div>
+            <div>
+                <h4>DOCS</h4>
+                <ul>
+                    <li><a href="#">Installation</a></li>
+                    <li><a href="#">Main Concepts</a></li>
+                    <li><a href="#">Advanced Guides</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Hooks (New)</a></li>
+                    <li><a href="#">Testing</a></li>
+                    <li><a href="#">Contributing</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li><a href="#">Community Resources</a></li>
+                    <li><a href="#">Tools</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div>
+                <h4>CHANNELS</h4>
+                <ul>
+                    <li><a href="#">GitHub <i class="fas fa-external-link-alt"></i></a></li>
+                    <li><a href="#">Stack Overflow <i class="fas fa-external-link-alt"></i></a></li>
+                    <li><a href="#">Discussion Forums <i class="fas fa-external-link-alt"></i></a></li>
+                    <li><a href="#">Reactiflux Chat <i class="fas fa-external-link-alt"></i></a></li>
+                    <li><a href="#">DEV Community <i class="fas fa-external-link-alt"></i></a></li>
+                    <li><a href="#">Facebook <i class="fas fa-external-link-alt"></i></a></li>
+                    <li><a href="#">Twitter <i class="fas fa-external-link-alt"></i></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>MORE</h4>
+                <ul>
+                    <li><a href="#">Tutorial</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Acknowledgements</a></li>
+                    <li><a href="#">React Native <i class="fas fa-external-link-alt"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
